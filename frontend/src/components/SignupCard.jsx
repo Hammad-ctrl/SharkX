@@ -35,6 +35,10 @@ export default function SignupCard() {
 	const setUser = useSetRecoilState(userAtom);
 
 	const handleSignup = async () => {
+		  if (inputs.username.includes(" ")) {
+        showToast("Error", "Spaces are not allowed in the username", "error");
+        return;
+    }
 		try {
 			const res = await fetch("/api/users/signup", {
 				method: "POST",
